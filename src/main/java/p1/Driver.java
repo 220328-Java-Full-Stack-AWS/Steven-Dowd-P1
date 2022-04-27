@@ -34,15 +34,15 @@ public class Driver {
 */
 
         //update
-        ReimbDao dao = new ReimbDao();
-        //UserModel updateModel = dao.read(2);
+        UserDao dao = new UserDao();
+        UserModel updateModel = dao.read(12);
+        updateModel.setUserFirstName("update");
+        dao.update(updateModel);
        // ReimbModel reimb = new ReimbModel(55.55f, Timestamp.from(Instant.now()), null, "testing", 2, 1, 1, 2  );
 
         //dao.updateResolved(reimb);
        // System.out.println(reimb);
-        List<ReimbModel> list = dao.getAll();
-        System.out.println(list);
-
+        //dao.delete(2);
 
 
 

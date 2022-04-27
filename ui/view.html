@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="view"></p>
+
+
+
+
+
+
+    <script>
+        window.onload = getItem(1);
+        //we need a function to reach out and get data from our API
+        async function getItem(id) {
+            //this is the equivelant to System.out.println();
+            console.log("test");
+            let response = await fetch(
+                "http://localhost:8080/p1/user",
+                {
+                    method: "GET",
+                    headers:
+                    {
+                        "Content-Type": "application/json",
+                        "ers_users_id": id
+                    }
+                }
+            );
+
+
+            let json = await response.json();
+            console.log(json);
+
+            let view = document.getElementById("view");
+            let content = "<h1>User Name:";
+            content += json.ersUsername;
+            content += "</h1> <br> email: ";
+            content += json.userEmail;
+            content += "<br> Role Id: ";
+            content += json.userRoleId;
+
+            view.innerHTML += content;
+
+        }
+    </script>
+</body>
+
+</html>

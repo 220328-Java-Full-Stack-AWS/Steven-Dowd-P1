@@ -44,7 +44,7 @@ public class UserDao {
                 e.printStackTrace();
             }
 
-            return null;
+            return model;
         }
 
         /**
@@ -86,12 +86,18 @@ public class UserDao {
          * @param model - the object used to update the corresponding row in the table based on id
          */
 
-        public void updateRoleToAdmin(UserModel model) {
-            String sql = "UPDATE ers_users SET user_role_id = 2 WHERE ers_users_id = ?";
+        public void update(UserModel model) {
+            String sql = "UPDATE ers_users SET ers_username = ?, ers_password = ?, user_first_name = ?, user_last_name = ?, user_email = ?, user_role_id = ? WHERE ers_users_id = ?";
             try {
                 PreparedStatement pstmt = ConnectionManager.getConnection().prepareStatement(sql);
-                pstmt.setInt(1, model.getUserRoleId());
-                //pstmt.setInt(2, model.getErs_users_id());
+
+                pstmt.setString(1, model.getErsUsername());
+                pstmt.setString(2, model.getErsPassword());
+                pstmt.setString(3, model.getUserFirstName());
+                pstmt.setString(4, model.getUserLastName());
+                pstmt.setString(5, model.getUserEmail());
+                pstmt.setInt(6, model.getUserRoleId());
+                pstmt.setInt(7,model.getErsUsersId());
                 pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();

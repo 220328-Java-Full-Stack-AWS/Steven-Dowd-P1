@@ -18,8 +18,8 @@ public class UserService {
     public UserModel read(int id) {
         return dao.read(id);
     }
-    public void updateRoleToAdmin(UserModel model) {
-        dao.updateRoleToAdmin(model);
+    public void update(UserModel model) {
+        dao.update(model);
     }
     public void delete(int id) {
         dao.delete(id);

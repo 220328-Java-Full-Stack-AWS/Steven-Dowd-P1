@@ -41,11 +41,11 @@ public class UserServlet extends HttpServlet {
         //UserModel model = service.read(Integer.parseInt(req.getHeader("ers_users_id")));
 
         String ers_users_id = req.getHeader("ers_users_id");
-        Integer integer = Integer.parseInt(ers_users_id);
+        int integer = Integer.parseInt(ers_users_id);
         UserModel model = service.read(integer);
 
         //now we want to turn model into JSON to transmit in the response body
-        ObjectMapper mapper = new ObjectMapper();
+        //ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(model);
         resp.setContentType("application/json");
         resp.getWriter().print(json);
@@ -58,16 +58,30 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        UserModel model = mapper.readValue(req.getInputStream(), UserModel.class);
+        model = service.create(model);
+        String json = mapper.writeValueAsString(model);
+        resp.setStatus(201); //successfully created
+        resp.setContentType("application/json");
+        resp.getWriter().print(json);
+
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
+        UserModel model = mapper.readValue(req.getInputStream(), UserModel.class);
+        service.update(model);
+        String json = mapper.writeValueAsString(model);
+        resp.setStatus(201); //successfully created
+        resp.setContentType("application/json");
+
+        resp.getWriter().print(json);
+
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+        service.delete(Integer.parseInt(req.getHeader("ers_users_id")));
+        resp.setStatus(200);
     }
 }
