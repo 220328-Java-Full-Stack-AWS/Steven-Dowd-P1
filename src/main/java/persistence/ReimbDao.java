@@ -47,7 +47,7 @@ public class ReimbDao {
             e.printStackTrace();
         }
 
-        return null;
+        return model;
     }
 
     /**
@@ -92,12 +92,20 @@ public class ReimbDao {
      * @param model - the object used to update the corresponding row in the table based on id
      */
 
-    public void updateResolved(ReimbModel model) {
-        String sql = "UPDATE ers_reimb SET reimb_resolved = now() WHERE reimb_id = ?";
+    public void update(ReimbModel model) {
+        String sql = "UPDATE ers_reimb SET reimb_amount = ?, reimb_submitted = ?, reimb_resolved = ?, reimb_description = ?, reimb_author = ?, reimb_resolver = ?, reimb_status_id = ?, reimb_type_id = ?  WHERE reimb_id = ?";
         try {
             PreparedStatement pstmt = ConnectionManager.getConnection().prepareStatement(sql);
-            pstmt.setInt(1, model.getReimbId());
-            //pstmt.setInt(2, model.getErs_users_id());
+            pstmt.setFloat(1, model.getReimbAmount());
+            pstmt.setTimestamp(2, model.getReimbSubmitted());
+            pstmt.setTimestamp(3, model.getReimbResolved());
+            pstmt.setString(4, model.getReimbDescription());
+            pstmt.setInt(5, model.getReimbAuthor());
+            pstmt.setInt(6, model.getReimbResolver());
+            pstmt.setInt(7, model.getReimbStatusId());
+            pstmt.setInt(8, model.getReimbTypeId());
+            pstmt.setInt(9, model.getReimbId());
+
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

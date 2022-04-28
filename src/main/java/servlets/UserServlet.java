@@ -63,7 +63,10 @@ public class UserServlet extends HttpServlet {
         String json = mapper.writeValueAsString(model);
         resp.setStatus(201); //successfully created
         resp.setContentType("application/json");
+        resp.setHeader("access-control-expose-headers", "authToken");
+        resp.setHeader("authToken", model.getErsUsername());
         resp.getWriter().print(json);
+
 
     }
 

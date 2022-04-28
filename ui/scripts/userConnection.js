@@ -8,7 +8,7 @@ You should start by adapting the URL to match your resource endpoint.
 
 //let userResourceURL = "http://localhost:port/contextpath/resourcepath"; //CHANGE ME!
 //Example backend location:
-let userResourceURL = "http://localhost:8080/api/user";
+
 //Note the context path is set to "/api" make sure to change that in the build config
 /*
 register function - sends a POST request with a new user object. 
@@ -24,21 +24,22 @@ let newUser = {
 }
 
 */
+let userResourceURL = "http://localhost:8080/p1/User"
 async function registerRequest(newUser) {
     let response = await fetch(
-        userResourceURL,
+        "http://localhost:8080/p1/User",
         {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                "mode": "register"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(newUser)
         }
     );
-
-    return response;
+    return response
 }
+
+
 
 /*
 login function - sends a POST request with necessary credentials

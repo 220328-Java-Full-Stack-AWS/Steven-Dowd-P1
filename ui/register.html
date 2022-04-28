@@ -59,11 +59,11 @@
             the input elements above.
             */
             let newUser = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value,
-                firstName: document.getElementById("firstName").value,
-                lastName: document.getElementById("lastName").value,
-                email: document.getElementById("email").value
+                ersUsername: document.getElementById("ersUsername").value,
+                ersPassword: document.getElementById("ersPassword").value,
+                userFirstName: document.getElementById("userFirstName").value,
+                userLastName: document.getElementById("userLastName").value,
+                userEmail: document.getElementById("userEmail").value
             }
             console.log(newUser);//fact finding
 
@@ -73,7 +73,7 @@
             console.log("Response: ", response);//fact finding
             console.log("Response JSON: ", response.json());//we should delete these later
 
-            if (response.status == 201) {
+
                 /*
                 Here we are retrieving the authToken header, which contains our username as
                 passed back from the server. This way we can use it to identify ourselves in 
@@ -91,9 +91,7 @@
                 //navigate the window to the landing page
                 window.location.href = "./landingPage.html";
 
-            } else {
-                alert("Unable to register!");
-            }
+
         }
     </script>
 

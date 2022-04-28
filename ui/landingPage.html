@@ -42,11 +42,11 @@
             */
             let paragraph = document.getElementById("pageContent");
             paragraph.innerHTML += "<h1>Welcome, "
-                + json.firstName
+                + json.userFirstName
                 + "</h1><br>"
-                + json.lastName + ", " + json.firstName
-                + "<br> username: " + json.username
-                + "<br> email: " + json.email
+                + json.userLastName + ", " + json.userFirstName
+                + "<br> username: " + json.ersUsername
+                + "<br> email: " + json.userEmail
         })(); //IIFE - Imediately Invoked Function Expression - self-invoking function.
     </script>
 </body>

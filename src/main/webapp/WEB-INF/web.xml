@@ -48,6 +48,15 @@
         <servlet-class>servlets.UserServlet</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>reimbServlet</servlet-name>
+        <url-pattern>/reimb</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>reimbServlet</servlet-name>
+        <servlet-class>servlets.ReimbServlet</servlet-class>
+    </servlet>
+
 
 
 

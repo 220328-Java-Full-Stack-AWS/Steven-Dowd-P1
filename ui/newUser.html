@@ -63,6 +63,32 @@
 
                 }
             );
+            let token = response.headers.get("authToken");
+            console.log("authToken received: ", token);//fact finding
+            localStorage.setItem("authToken", token);
+
+            //navigate the window to the landing page
+           // window.location.href = "./landingPage.html";
+
+            //Make our asynchronous API call
+
+
+
+                /*
+                Here we are retrieving the authToken header, which contains our username as
+                passed back from the server. This way we can use it to identify ourselves in
+                subsequent API calls.
+                For this to work, you must send back a token in the header of the response
+                The key should match the shown key name "authToken" and the value should be
+                a string you can use to locally store information about the logged-in user.
+                In this case we are getting a token that contains the username string,
+                and storing it in localStorage.
+                */
+
+
+
+
+
         }
     </script>
 </body>

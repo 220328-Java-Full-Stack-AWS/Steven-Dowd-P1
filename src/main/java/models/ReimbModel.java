@@ -1,7 +1,10 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.sql.Timestamp;
 
+@JsonIgnoreProperties
 public class ReimbModel {
 /*
     create table if not exists ers_reimb (

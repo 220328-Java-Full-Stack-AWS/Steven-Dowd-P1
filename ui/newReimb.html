@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<label>Enter new reimbursement amount:</label>
+<input type="text" id="reimbAmount" name="reimbAmount">
+<br>
+<label>Describe the reimbursement</label>
+<input type="text" id="reimbDescription" name="reimbDescription">
+<br>
+<label>Enter 1 for food, 2 for travel, 3 for lodging</label>
+<input type="text" id="reimbTypeId" name="reimbTypeId">
+<br>
+<button onclick="submitForm()">Submit</button>
+
+
+
+
+
+<script>
+    // function test(e) {
+    //     //e.preventDefault();
+    //     console.log(document.getElementById("task").value);
+    // }
+
+
+    async function submitForm() {
+
+
+        let formData =
+            {
+                ersUsersId: -1,
+                ersUsername: document.getElementById("reimbAmount").value,
+                ersPassword: document.getElementById("reimbDescription").value,
+                userFirstName: document.getElementById("reimbTypeId").value,
+
+                reimbSubmitted: Date.now(),
+                reimbResolved: null,
+                reimbAuthor: 1,
+                reimbResolver: 1,
+                reimbStatusId: 1
+            }
+
+
+        let response = await fetch(
+            "http://localhost:8080/p1/reimb",
+            {
+                method: "POST",
+                headers:
+                    {
+                        "Content-Type": "application/json"
+                    },
+                body: JSON.stringify(formData)
+
+            }
+        );
+        let token = response.headers.get("authToken");
+        console.log("authToken received: ", token);//fact finding
+        localStorage.setItem("authToken", token);
+
+        //navigate the window to the landing page
+        // window.location.href = "./landingPage.html";
+
+        //Make our asynchronous API call
+
+
+
+        /*
+        Here we are retrieving the authToken header, which contains our username as
+        passed back from the server. This way we can use it to identify ourselves in
+        subsequent API calls.
+        For this to work, you must send back a token in the header of the response
+        The key should match the shown key name "authToken" and the value should be
+        a string you can use to locally store information about the logged-in user.
+        In this case we are getting a token that contains the username string,
+        and storing it in localStorage.
+        */
+
+
+
+
+
+    }
+</script>
+</body>
+
+</html>
